@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Music Hub - Sign Up</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .signup-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        width: 90%;
+        max-width: 450px;
+        transform: translateY(-10%);
+      }
+
+      h2 {
+        color: #e94560;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2.2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #0f3460;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e94560;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #ff7a3d;
+        box-shadow: 0 0 10px rgba(255, 122, 61, 0.3);
+      }
+
+      .error-message {
+        color: #e94560;
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+        display: block;
+        font-weight: bold;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #e94560;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 1rem;
+      }
+
+      button:hover {
+        background-color: #c2334a;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
+      .login-link a {
+        color: #e94560;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .login-link a:hover {
+        color: #ff7a3d;
+        text-decoration: underline;
+      }
+
+      .decorative-circle {
+        position: fixed;
+        background: rgba(233, 69, 96, 0.1);
+        border-radius: 50%;
+        z-index: -1;
+      }
+
+      .circle-1 {
+        width: 200px;
+        height: 200px;
+        top: -50px;
+        left: -50px;
+      }
+
+      .circle-2 {
+        width: 150px;
+        height: 150px;
+        bottom: -30px;
+        right: -30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <div class="signup-container">
+      <h2>Join the Party! 🎉</h2>
+
+      <form th:action="@{/register}" th:object="${user}" method="post">
+        <div class="form-group">
+          <label>First Name</label>
+          <input
+            type="text"
+            th:field="*{firstName}"
+            required
+            placeholder="John"
+          />
+          <span
+            class="error-message"
+            th:if="${#fields.hasErrors('firstName')}"
+            th:errors="*{firstName}"
+          ></span>
+        </div>
+
+        <div class="form-group">
+          <label>Last Name</label>
+          <input
+            type="text"
+            th:field="*{lastName}"
+            required
+            placeholder="Doe"
+          />
+          <span
+            class="error-message"
+            th:if="${#fields.hasErrors('lastName')}"
+            th:errors="*{lastName}"
+          ></span>
+        </div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            th:field="*{username}"
+            required
+            placeholder="@rockstar123"
+          />
+          <span
+            class="error-message"
+            th:if="${#fields.hasErrors('username')}"
+            th:errors="*{username}"
+          ></span>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            th:field="*{email}"
+            required
+            placeholder="hello@music.com"
+          />
+          <span
+            class="error-message"
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+          ></span>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            th:field="*{password}"
+            required
+            placeholder="••••••••"
+          />
+          <span
+            class="error-message"
+            th:if="${#fields.hasErrors('password')}"
+            th:errors="*{password}"
+          ></span>
+        </div>
+
+        <button type="submit">Create Account 🎸</button>
+      </form>
+
+      <div class="login-link">
+        <p>Already rocking with us? <a href="/login">Login here</a></p>
+      </div>
+    </div>
+  </body>
+</html>
